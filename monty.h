@@ -8,8 +8,8 @@
 
 
 stack_t *pushfunct(stack_t **stack, unsigned int line_number);
-stack_t *pallfunct(stack_t **stack, __attribute__((unused)) int line_number);
-stack_t *checkinstruction(char *line, stack_t *stack);
+stack_t *pallfunct(stack_t **stack, int line_number);
+stack_t *checkinstruction(char *line, stack_t **stack);
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)

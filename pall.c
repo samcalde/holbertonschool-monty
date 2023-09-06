@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t *pallfunct(stack_t **stack, __attribute__((unused)) int line_number)
+stack_t *pallfunct(stack_t **stack, int line_number)
 {
 	
 }

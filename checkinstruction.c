@@ -6,7 +6,7 @@
 * Return: 0 when exiting
 */
 
-stack_t *checkinstruction(char *line, stack_t *stack)
+stack_t *checkinstruction(char *line, stack_t **stack)
 {
 	char *tokens[32];
 	const char token_delimiter[] = " \t";
@@ -24,6 +24,7 @@ stack_t *checkinstruction(char *line, stack_t *stack)
 	{
 		if (strcmp(cases[i].opcode, tokens[0]) == 0)
 			cases[i].f(stack, atoi(tokens[1]));
+		i++;
 	}
 
 	return (stack);
