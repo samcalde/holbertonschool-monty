@@ -7,9 +7,9 @@
 #include <string.h>
 
 
-stack_t *pushfunct(stack_t **stack, unsigned int line_number);
-stack_t *pallfunct(stack_t **stack, int line_number);
-stack_t *checkinstruction(char *line, stack_t **stack);
+stack_t *pushfunct(stack_t **stack, unsigned int content);
+stack_t *pallfunct(stack_t **stack, int content);
+stack_t *checkinstruction(char *line, stack_t **stack, int line_number);
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,7 +38,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_t **stack, unsigned int content);
 } instruction_t;
 
 instruction_t cases[] = {

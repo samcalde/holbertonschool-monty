@@ -8,7 +8,7 @@
 
 int main(char **argv, int argc)
 {
-	stack_t **stack;
+	stack_t **stack = NULL;
 	ssize_t readBytes;
 	char *file_content = malloc(1024), *lines[256], filepath;
 	const char line_delimiter[] = "\n";
@@ -28,11 +28,12 @@ int main(char **argv, int argc)
 			free(file_content);
 		else
 		{
+			checkinstruction(lines[0], stack, 1);
 			for (i = 1; lines[i] != NULL; i++)
 			{
 				lines[i] = strtok(NULL, line_delimiter);
 				if (lines[i] != NULL)
-					checkinstruction(lines[i], stack);
+					checkinstruction(lines[i], stack, (i + 1));
 			}
 			free(instruction);
 		}
