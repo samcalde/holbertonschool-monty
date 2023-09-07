@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	int i = 1, fd;
 
 	if (file_content == NULL)
-		//Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE
+		printf("Malloc falla");
 	if (argc == 2)
 	{
 		filepath = argv[1];
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 			free(file_content);
 		}
 	} 
-	if (argc == 2)
+	if (argc != 2)
 	{
 		free(file_content);
 		//ERROR USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
