@@ -1,21 +1,24 @@
 #include "monty.h"
 
-stack_t *pushfunct(stack_t **stack, unsigned int content)
+void pushfunct(stack_td **stack, char *content, int line_number)
 {
-	stack_t *newnode = malloc(sizeof(stack_t));
+	stack_td *newnode = malloc(sizeof(stack_td));
+	int num = 0;
 
+	if (content == NULL)
+	{
+		printf("L%d: usage: push integer", line_number);
+	}
 	if (newnode == NULL)
 		//malloc error
-	if (content == NULL)
-		//No argument error
+
+	num = atoi(content);
 
 	newnode->prev = NULL;
-	newnode->n = content; 
-	newnode->next = stack;
+	newnode->n = num; 
+	newnode->next = *stack;
 
 	(*stack)->prev = newnode;
 
-	stack = newnode;
-
-	return (stack);
+	*stack = newnode;
 }

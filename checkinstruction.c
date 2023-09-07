@@ -6,7 +6,7 @@
 * Return: 0 when exiting
 */
 
-stack_t *checkinstruction(char *line, stack_t **stack, int line_number)
+stack_td *checkinstruction(char *line, stack_td **stack, int line_number)
 {
 	char *command[32];
 	const char token_delimiter[] = " \t";
@@ -15,7 +15,7 @@ stack_t *checkinstruction(char *line, stack_t **stack, int line_number)
 	command[0] = strtok(line, token_delimiter);
 
 	if (command[0] == NULL)
-		return (stack);
+		return (*stack);
 	else
 		command[1] = strtok(NULL, token_delimiter);
 
@@ -24,12 +24,12 @@ stack_t *checkinstruction(char *line, stack_t **stack, int line_number)
 	{
 		if (strcmp(cases[i].opcode, command[0]) == 0)
 		{
-			cases[i].f(stack, atoi(command[1]));
+			cases[i].f(stack, command[1], line_number);
 			break;
 		}
 		i++;
 	}
 	//Handle unknown command
 
-	return (stack);
+	return (*stack);
 }

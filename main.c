@@ -6,22 +6,31 @@
 * Return: 0 when exiting
 */
 
-int main(char **argv, int argc)
+int main(int argc, char **argv)
 {
-	stack_t **stack = NULL;
+	stack_td **stack = NULL;
 	ssize_t readBytes;
-	char *file_content = malloc(1024), *lines[256], filepath;
+	char *file_content = malloc(1024), *lines[256], *filepath;
 	const char line_delimiter[] = "\n";
 	int i = 1, fd;
 
-	//Malloc failure
+	if (file_content == NULL)
+		//Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE
 	if (argc == 2)
 	{
 		filepath = argv[1];
 		fd = open(filepath, 1024);
-		//Error to open
+		if (fd < 0)
+		{
+			close(fd);
+			//Error: Can't open file <file>
+		}
 		readBytes = read(fd, file_content, 1024);
-		//Error in read (close fd and return error)
+		if (readBytes < 0)
+		{
+			close(fd);
+			return (0);
+		}
 
 		lines[0] = strtok(file_content, line_delimiter);
 		if (lines[0] == NULL)
@@ -35,11 +44,13 @@ int main(char **argv, int argc)
 				if (lines[i] != NULL)
 					checkinstruction(lines[i], stack, (i + 1));
 			}
-			free(instruction);
+			free(file_content);
 		}
-	}
-	else
+	} 
+	if (argc == 2)
+	{
+		free(file_content);
 		//ERROR USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
-
+	}
 	return (0);
 }

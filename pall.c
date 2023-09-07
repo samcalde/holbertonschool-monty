@@ -1,6 +1,12 @@
 #include "monty.h"
 
-stack_t *pallfunct(stack_t **stack, int line_number)
+void pallfunct(stack_td **stack, __attribute__((unused)) char *content, __attribute__((unused))int line_number)
 {
-	
+	stack_td *currentnode = (stack_td *)stack;
+
+	while (currentnode != NULL)
+	{
+		printf("%d\n", currentnode->n);
+		currentnode =  currentnode->next;
+	}
 }

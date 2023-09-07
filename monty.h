@@ -5,11 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-stack_t *pushfunct(stack_t **stack, unsigned int content);
-stack_t *pallfunct(stack_t **stack, int content);
-stack_t *checkinstruction(char *line, stack_t **stack, int line_number);
+#include <fcntl.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -25,7 +21,7 @@ typedef struct stack_s
         int n;
         struct stack_s *prev;
         struct stack_s *next;
-} stack_t;
+} stack_td;
 
 /**
  * struct instruction_s - opcode and its function
@@ -38,8 +34,12 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int content);
+        void (*f)(stack_td **stack, char *content, int line_number);
 } instruction_t;
+
+void pushfunct(stack_td **stack, char *content, int line_number);
+void pallfunct(stack_td **stack, char *content, int line_number);
+stack_td *checkinstruction(char *line, stack_td **stack, int line_number);
 
 instruction_t cases[] = {
 	{"push", pushfunct},
