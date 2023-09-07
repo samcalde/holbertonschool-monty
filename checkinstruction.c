@@ -13,8 +13,8 @@ stack_td *checkinstruction(char *line, stack_td *stack, int line_number)
 	int i = 1;
 	instruction_t *cases = get_cases();
 
+	printf("checkins started\n");
 	command[0] = strtok(line, token_delimiter);
-
 	if (command[0] == NULL)
 		return (stack);
 	else
