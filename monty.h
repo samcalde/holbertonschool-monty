@@ -42,9 +42,9 @@ void pallfunct(stack_td **stack, char *content, int line_number);
 stack_td *checkinstruction(char *line, stack_td **stack, int line_number);
 
 instruction_t cases[] = {
-	{"push", pushfunct},
-	{"pall", pallfunct},
-	{NULL, NULL}
+    {"push", pushfunct},
+    {"pall", pallfunct},
+    {NULL, NULL}
 };
 
 #endif
