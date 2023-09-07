@@ -11,6 +11,7 @@ stack_td *checkinstruction(char *line, stack_td **stack, int line_number)
 	char *command[32];
 	const char token_delimiter[] = " \t";
 	int i = 1;
+	instruction_t *cases = get_cases();
 
 	command[0] = strtok(line, token_delimiter);
 
