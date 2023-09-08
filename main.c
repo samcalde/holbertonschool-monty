@@ -20,7 +20,6 @@ int main(int argc, char **argv)
 	{
 		filepath = argv[1];
 		fd = open(filepath, O_RDONLY);
-		printf("fd: %d\n", fd);
 		if (fd < 0)
 		{
 			close(fd);
@@ -38,17 +37,14 @@ int main(int argc, char **argv)
 			free(file_content);
 		else
 		{
-			printf("Line 1: %s\n", lines[0]);
-			for (i = 1; lines[i] != NULL; i++)
+			for (i = 1; lines[i - 1] != NULL; i++)
 			{
 				lines[i] = strtok(NULL, line_delimiter);
-				printf("Line %d: %s\n", (i + 1), lines[i]);
 			}
-			checkinstruction(lines[0], stack, 1);
-			for (i = 1; lines[i] != NULL; i++)
+			checkinstruction(lines[0], (&stack), 1);
+			for (i = 1; lines[i - 1] != NULL; i++)
 			{
-				printf("Line %d: %s\n", (i + 1), lines[i]);
-				checkinstruction(lines[i], stack, (i + 1));
+				checkinstruction(lines[i], (&stack), (i + 1));
 			}
 			free(file_content);
 		}
