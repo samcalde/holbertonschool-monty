@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
 	stack_td *stack = malloc(sizeof(stack_td));
 	ssize_t readBytes;
-	char *file_content = malloc(30000), *lines[4000], *filepath;
+	char *file_content = malloc(30000), *lines[4000] = NULL, *filepath = NULL;
 	const char line_delimiter[] = "\n";
 	int i = 1, fd;
 	
@@ -40,8 +40,8 @@ int main(int argc, char **argv)
 			{
 				lines[i] = strtok(NULL, line_delimiter);
 			}
-			checkinstruction(lines[0], (&stack), 1);
-			for (i = 1; lines[i - 1] != NULL; i++)
+
+			for (i = 0; lines[i] != NULL; i++)
 			{
 				checkinstruction(lines[i], (&stack), (i + 1));
 			}
