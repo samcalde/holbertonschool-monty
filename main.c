@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 		fd = open(filepath, O_RDONLY);
 		if (fd < 0)
 		{
-			close(fd);
 			printf("Error: Can't open file %s\n", filepath);
 		}
 		readBytes = read(fd, file_content, 1024);

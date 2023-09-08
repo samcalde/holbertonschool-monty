@@ -10,6 +10,6 @@ void pallfunct(stack_td **stack, __attribute__((unused)) char *content, __attrib
 		free(currentnode);
 		currentnode =  currentnode->next;
 	}
-	free(currentnode->next);
+
 	return;
 }
