@@ -40,6 +40,12 @@ typedef struct instruction_s
 instruction_t *get_cases();
 void pushfunct(stack_td **stack, char *content, int line_number);
 void pallfunct(stack_td **stack, char *content, int line_number);
+void pintfunct(stack_td **stack, char *content, int line_number);
+void popfunct(stack_td **stack, char *content, int line_number);
+void swapfunct(stack_td **stack, char *content, int line_number);
+void addfunct(stack_td **stack, char *content, int line_number);
+void nopfunct(stack_td **stack, char *content, int line_number);
+void freestack(stack_td **stack);
 stack_td *checkinstruction(char *line, stack_td **stack, int line_number);
 
 #endif
