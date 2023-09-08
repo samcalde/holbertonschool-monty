@@ -47,6 +47,7 @@ int main(int argc, char **argv)
 				checkinstruction(lines[i], (&stack), (i + 1));
 			}
 			free(file_content);
+			close(fd);
 		}
 	} 
 	if (argc != 2)
