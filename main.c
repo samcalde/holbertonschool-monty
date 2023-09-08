@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		free(file_content);
+		free(stack);
 		//ERROR USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
 	}
 	return (0);
