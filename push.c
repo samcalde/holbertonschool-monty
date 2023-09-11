@@ -5,21 +5,23 @@ void pushfunct(stack_td **stack, char *content, int line_number)
 	stack_td *newnode = malloc(sizeof(stack_td));
 	int num = 0;
 
-	if (content == NULL)
-	{
-		printf("L%d: usage: push integer", line_number);
-	}
 	if (newnode == NULL)
-		printf("Error: malloc failed\n");
+		MALLOC_ERROR();
 
-	num = atoi(content);
+	if ((content != NULL && isdigit(content[0])) || (content != NULL && content[0] == '-' && isdigit(content[1])))
+	{
+		num = atoi(content);
 
-	newnode->prev = NULL;
-	newnode->n = num; 
-	newnode->next = (*stack);
+		newnode->prev = NULL;
+		newnode->n = num; 
+		newnode->next = (*stack);
 
-	(*stack)->prev = newnode;
+		(*stack)->prev = newnode;
 
-	(*stack) = newnode;
-	return;
+		(*stack) = newnode;
+		return;
+	}
+	else 
+		PUSH_USAGE_ERROR(line_number);
+	
 }

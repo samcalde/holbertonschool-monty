@@ -18,7 +18,7 @@ void pintfunct(stack_td **stack, __attribute__((unused)) char *content, int line
 	if (stack != NULL)
 		printf("%d\n", (*stack)->n);
 	else
-		printf("L%d: can't pint, stack empty\n", line_number);
+		PINT_ERROR(line_number);
 	
 	return;
 }
@@ -34,7 +34,7 @@ void popfunct(stack_td **stack, __attribute__((unused)) char *content, int line_
 		(*stack) = currentnode;
 	}
 	else
-		printf("L%d: can't pop an empty stack\n", line_number);
+		POP_ERROR(line_number);
 
 	return;
 }
@@ -53,7 +53,7 @@ void swapfunct(stack_td **stack, __attribute__((unused)) char *content, int line
 		(*stack) = secondnode;
 	}
 	else
-		printf("L%d: can't swap, stack too short\n", line_number);
+		SWAP_ERROR(line_number);
 	
 	return;
 }
@@ -72,7 +72,7 @@ void addfunct(stack_td **stack, __attribute__((unused)) char *content, int line_
 		(*stack) = currentnode;
 	}
 	else
-		printf("L%d: can't add, stack too short\n", line_number);
+		ADD_ERROR(line_number);
 
 	return;
 }

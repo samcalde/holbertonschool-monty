@@ -10,20 +10,19 @@ int main(int argc, char **argv)
 {
 	stack_td *stack = malloc(sizeof(stack_td));
 	ssize_t readBytes;
-	char *file_content = malloc(30000), *lines[4000] = NULL, *filepath = NULL;
+	char *file_content = malloc(30000), *lines[4000] = {NULL}, *filepath = NULL;
 	const char line_delimiter[] = "\n";
 	int i = 1, fd;
-	
+
 	if (file_content == NULL || stack == NULL)
-		printf("Error: malloc failed\n");
+		MALLOC_ERROR();
 	if (argc == 2)
 	{
 		filepath = argv[1];
 		fd = open(filepath, O_RDONLY);
 		if (fd < 0)
-		{
-			printf("Error: Can't open file %s\n", filepath);
-		}
+			OPEN_ERROR(filepath);
+
 		readBytes = read(fd, file_content, 1024);
 		if (readBytes < 0)
 		{
@@ -54,7 +53,7 @@ int main(int argc, char **argv)
 	{
 		free(file_content);
 		free(stack);
-		//ERROR USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
+		USAGE_ERROR();
 	}
 	return (0);
 }

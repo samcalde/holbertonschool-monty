@@ -8,7 +8,7 @@
 
 stack_td *checkinstruction(char *line, stack_td **stack, int line_number)
 {
-	char *command[32] = NULL;
+	char *command[32] = {NULL};
 	const char token_delimiter[] = " \t";
 	int i = 1;
 	instruction_t *cases = get_cases();
@@ -29,7 +29,8 @@ stack_td *checkinstruction(char *line, stack_td **stack, int line_number)
 		}
 		i++;
 	}
-	//Handle unknown command
+	if (cases[i].opcode == NULL)
+		INVALID_INSTRUCTION_ERROR(line_number, command[0]);
 
 	return (*stack);
 }

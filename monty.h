@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -47,5 +48,59 @@ void addfunct(stack_td **stack, char *content, int line_number);
 void nopfunct(stack_td **stack, char *content, int line_number);
 void freestack(stack_td **stack);
 stack_td *checkinstruction(char *line, stack_td **stack, int line_number);
+
+#define OPEN_ERROR(filepath) \
+do { \
+	fprintf(stderr, "Error: Can't open file %s\n", filepath); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define USAGE_ERROR() \
+do { \
+	fprintf(stderr, "USAGE: monty file\n"); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define INVALID_INSTRUCTION_ERROR(line_number, instruction) \
+do { \
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, instruction); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define PINT_ERROR(line_number) \
+do { \
+	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define POP_ERROR(line_number) \
+do { \
+	fprintf(stderr, "L%d: can't pop an empty stack\n", line_number); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define SWAP_ERROR(line_number) \
+do { \
+	fprintf(stderr, "L%d: can't swap, stack too short\n", line_number); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define ADD_ERROR(line_number) \
+do { \
+	fprintf(stderr, "L%d: can't add, stack too short\n", line_number); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define MALLOC_ERROR() \
+do { \
+	fprintf(stderr, "Error: malloc failed\n"); \
+	exit(EXIT_FAILURE); \
+} while (0)
+
+#define PUSH_USAGE_ERROR(line_number) \
+do { \
+	fprintf(stderr, "L%d: usage: push integer\n", line_number); \
+	exit(EXIT_FAILURE); \
+} while (0)
 
 #endif
