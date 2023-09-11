@@ -10,13 +10,13 @@
 
 int main(int argc, char **argv)
 {
-	stack_td *stack = calloc(1, sizeof(stack_td));
+	stack_td *stack = NULL;
 	ssize_t readBytes;
 	char *file_content = calloc(30000, 1), *lines[4000] = {NULL}, *filepath = NULL;
 	const char line_delimiter[] = "\n";
 	int i = 1, fd;
 
-	if (file_content == NULL || stack == NULL)
+	if (file_content == NULL)
 		MALLOC_ERROR();
 	if (argc == 2)
 	{
