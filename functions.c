@@ -4,7 +4,7 @@ void pallfunct(stack_td **stack, __attribute__((unused)) char *content, __attrib
 {
 	stack_td *currentnode = (*stack);
 
-	while (currentnode->next != NULL)
+	while (currentnode != NULL)
 	{
 		printf("%d\n", currentnode->n);
 		currentnode =  currentnode->next;

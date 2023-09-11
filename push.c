@@ -16,7 +16,7 @@ void pushfunct(stack_td **stack, char *content, int line_number)
 		newnode->n = num; 
 		newnode->next = (*stack);
 
-		if (stack != NULL)
+		if ((*stack) != NULL && stack != NULL)
 			(*stack)->prev = newnode;
 
 		(*stack) = newnode;
