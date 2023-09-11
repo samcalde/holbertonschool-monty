@@ -15,10 +15,12 @@ void pallfunct(stack_td **stack, __attribute__((unused)) char *content, __attrib
 
 void pintfunct(stack_td **stack, __attribute__((unused)) char *content, int line_number)
 {
-	if (stack != NULL)
-		printf("%d\n", (*stack)->n);
-	else
+	stack_td *currentnode = (*stack);
+
+	if (currentnode == NULL)
 		PINT_ERROR(line_number);
+	else
+		printf("%d\n", currentnode->n);
 	
 	return;
 }
@@ -27,7 +29,7 @@ void popfunct(stack_td **stack, __attribute__((unused)) char *content, int line_
 {
 	stack_td *currentnode = (*stack);
 
-	if (stack != NULL)
+	if ((*stack) != NULL)
 	{
 		free(currentnode);
 		currentnode =  currentnode->next;
@@ -82,15 +84,11 @@ void nopfunct(__attribute__((unused)) stack_td **stack, __attribute__((unused)) 
 	return;
 }
 
-void freestack(stack_td **stack)
+void freestack(stack_td *stack)
 {
-	stack_td *currentnode = (*stack);
-
-	while (currentnode->next != NULL)
-	{
-		free(currentnode);
-		currentnode =  currentnode->next;
-	}
-
-	return;
+	if (!stack)
+		return;
+	else
+		freestack(stack->next);
+	free(stack);
 }

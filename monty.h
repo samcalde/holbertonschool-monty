@@ -46,7 +46,7 @@ void popfunct(stack_td **stack, char *content, int line_number);
 void swapfunct(stack_td **stack, char *content, int line_number);
 void addfunct(stack_td **stack, char *content, int line_number);
 void nopfunct(stack_td **stack, char *content, int line_number);
-void freestack(stack_td **stack);
+void freestack(stack_td *stack);
 stack_td *checkinstruction(char *line, stack_td **stack, int line_number);
 
 #define OPEN_ERROR(filepath) \

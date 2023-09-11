@@ -2,15 +2,17 @@
 
 /**
 * main - monty language interpreter
+* @argc: argument count
+* @argv: argument values
 *
 * Return: 0 when exiting
 */
 
 int main(int argc, char **argv)
 {
-	stack_td *stack = malloc(sizeof(stack_td));
+	stack_td *stack = calloc(1, sizeof(stack_td));
 	ssize_t readBytes;
-	char *file_content = malloc(30000), *lines[4000] = {NULL}, *filepath = NULL;
+	char *file_content = calloc(30000, 1), *lines[4000] = {NULL}, *filepath = NULL;
 	const char line_delimiter[] = "\n";
 	int i = 1, fd;
 
@@ -45,7 +47,7 @@ int main(int argc, char **argv)
 				checkinstruction(lines[i], (&stack), (i + 1));
 			}
 			free(file_content);
-			freestack(&stack);
+			freestack(stack);
 			close(fd);
 		}
 	} 
